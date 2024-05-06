@@ -1,0 +1,27 @@
+spring:
+  profiles:
+    default: local
+
+server:
+  port: 8080
+
+swagger:
+  title: AA팀 BE Base Template API
+  version: v1.0
+  description: Base 서비스 API 명세
+springdoc:
+  api-docs:
+    path: /swagger-ui
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: dev
