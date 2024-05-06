@@ -43,18 +43,18 @@
 //        return new ResponseEntity<>(result, restApiException.getHttpStatus());
 //    }
 //
-//    @ExceptionHandler(SsgFeignClientException.class)
+//    @ExceptionHandler(sFeignClientException.class)
 //    protected ResponseEntity<Object> handleException(
-//            final SsgFeignClientException ssgFeignClientException) {
+//            final sFeignClientException sFeignClientException) {
 //        Map<String, Object> result = new HashMap<>();
 //
-//        SsgPointResponseCode ssgPointResponseCode =
-//                Arrays.stream(SsgPointResponseCode.values())
+//        sPointResponseCode sPointResponseCode =
+//                Arrays.stream(sPointResponseCode.values())
 //                        .filter(
 //                                code ->
 //                                        code.value()
 //                                                .equals(
-//                                                        ssgFeignClientException
+//                                                        sFeignClientException
 //                                                                .getFeignErrorResponse()
 //                                                                .getCode()))
 //                        .findAny()
@@ -63,18 +63,18 @@
 //        result.put(ResponseEntityConstants.SUCCESS_OR_NOT, ResponseEntityConstants.SUCCESS_NO_FLAG);
 //        result.put(
 //                ResponseEntityConstants.STATUS_CODE,
-//                ssgPointResponseCode == null
-//                        ? ssgFeignClientException.getStatus()
-//                        : ssgPointResponseCode.statusCode());
+//                sPointResponseCode == null
+//                        ? sFeignClientException.getStatus()
+//                        : sPointResponseCode.statusCode());
 //        result.put(
 //                ResponseEntityConstants.ERROR_MESSAGE,
-//                ssgFeignClientException.getFeignErrorResponse().getMessage());
+//                sFeignClientException.getFeignErrorResponse().getMessage());
 //
 //        return new ResponseEntity<>(
 //                result,
-//                ssgPointResponseCode == null
+//                sPointResponseCode == null
 //                        ? OK
-//                        : HttpStatusCode.valueOf(ssgPointResponseCode.httpStatus()));
+//                        : HttpStatusCode.valueOf(sPointResponseCode.httpStatus()));
 //    }
 //
 //    @ExceptionHandler(Exception.class)
@@ -174,14 +174,14 @@
 //                    ((AccessDeniedException) exception).getMessage());
 //            ret = new ResponseEntity<>(result, OK);
 //
-//        } else if (exception instanceof SsgFeignClientException) {
-//            SsgPointResponseCode ssgPointResponseCode =
-//                    Arrays.stream(SsgPointResponseCode.values())
+//        } else if (exception instanceof sFeignClientException) {
+//            sPointResponseCode sPointResponseCode =
+//                    Arrays.stream(sPointResponseCode.values())
 //                            .filter(
 //                                    code ->
 //                                            code.value()
 //                                                    .equals(
-//                                                            ((SsgFeignClientException) exception)
+//                                                            ((sFeignClientException) exception)
 //                                                                    .getFeignErrorResponse()
 //                                                                    .getCode()))
 //                            .findAny()
@@ -192,19 +192,19 @@
 //                    ResponseEntityConstants.SUCCESS_NO_FLAG);
 //            result.put(
 //                    ResponseEntityConstants.STATUS_CODE,
-//                    ssgPointResponseCode == null
-//                            ? ((SsgFeignClientException) exception).getStatus()
-//                            : ssgPointResponseCode.statusCode());
+//                    sPointResponseCode == null
+//                            ? ((sFeignClientException) exception).getStatus()
+//                            : sPointResponseCode.statusCode());
 //            result.put(
 //                    ResponseEntityConstants.ERROR_MESSAGE,
-//                    ((SsgFeignClientException) exception).getFeignErrorResponse().getMessage());
+//                    ((sFeignClientException) exception).getFeignErrorResponse().getMessage());
 //
 //            ret =
 //                    new ResponseEntity<>(
 //                            result,
-//                            ssgPointResponseCode == null
+//                            sPointResponseCode == null
 //                                    ? OK
-//                                    : HttpStatusCode.valueOf(ssgPointResponseCode.httpStatus()));
+//                                    : HttpStatusCode.valueOf(sPointResponseCode.httpStatus()));
 //        } else {
 //            result.put(
 //                    ResponseEntityConstants.SUCCESS_OR_NOT,
