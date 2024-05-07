@@ -10,14 +10,14 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @Data
 @Builder
-public class CommonReturnVO<T> {
+public class CommonResp<T> {
     private String successorNot;
     private String statusCode;
     private String errorMessage;
     private T data;
 
-    public static <T> CommonReturnVO<T> onSuccess(T data) {
-        return CommonReturnVO.<T>builder()
+    public static <T> CommonResp<T> onSuccess(T data) {
+        return CommonResp.<T>builder()
                 .successorNot("SUCCESS")
                 .statusCode(String.valueOf(HttpStatus.OK))
                 .data(data)

@@ -1,7 +1,8 @@
 package com.aa.be.sample.api;
 
-import com.aa.be.common.model.CommonReturnVO;
-import org.springframework.http.HttpStatus;
+import com.aa.be.common.model.CommonResp;
+import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,8 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SampleController {
 
-    @GetMapping
-    public ResponseEntity<CommonReturnVO<String>> sampleApi() {
-        return new ResponseEntity<>(CommonReturnVO.onSuccess("sampleApi"), HttpStatus.OK);
+    @Operation(
+            summary = "sample api",
+            description = "sample api",
+            tags = {"Sample"})
+    @GetMapping(value = "/v1/sample", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<CommonResp<String>> sampleApi() {
+        return ResponseEntity.ok(CommonResp.onSuccess("hello world"));
     }
 }
